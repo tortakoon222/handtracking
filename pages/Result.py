@@ -58,9 +58,12 @@ def result_page():
 
     webrtc_streamer(
         key="hand_gesture_volume_control", 
-        mode=WebRtcMode.SENDRECV,
         video_frame_callback=video_frame_callback,
-        media_stream_constraints={"video": True, "audio": False}
+        media_stream_constraints={"video": True, "audio": False},
+        rtc_configuration={
+        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+        },
+        async_processing=True,
     )
 
 result_page()
